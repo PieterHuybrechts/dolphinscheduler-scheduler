@@ -1,0 +1,7 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<li th:fragment="person (person)"><span th:text="${person.name}" th:remove="tag"/>: <span th:text="${person.age}" th:remove="tag"/></li>
+
+</html>
