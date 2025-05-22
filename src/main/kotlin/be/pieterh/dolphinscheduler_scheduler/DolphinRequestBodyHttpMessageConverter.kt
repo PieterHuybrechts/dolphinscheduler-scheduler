@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component
 import java.net.URLEncoder
 
 @Component
-class DolphinRequestBodyHttpMessageConverterKotlin(val mapper: ObjectMapper) : HttpMessageConverter<DolphinRequestBody> {
+class DolphinRequestBodyHttpMessageConverter(val mapper: ObjectMapper) : HttpMessageConverter<DolphinRequestBody> {
 
     override fun canRead(clazz: Class<*>, mediaType: MediaType?): Boolean {
         return false
