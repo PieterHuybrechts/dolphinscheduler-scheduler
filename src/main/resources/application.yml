@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: "dolphinScheduler-scheduler"
+  profiles:
+    active: secrets
