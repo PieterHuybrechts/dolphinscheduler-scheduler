@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class DolphinschedulerSchedulerApplication
+class DolphinSchedulerSchedulerApplication
 
 fun main(args: Array<String>) {
-	runApplication<DolphinschedulerSchedulerApplication>(*args)
+	runApplication<DolphinSchedulerSchedulerApplication>(*args)
 }

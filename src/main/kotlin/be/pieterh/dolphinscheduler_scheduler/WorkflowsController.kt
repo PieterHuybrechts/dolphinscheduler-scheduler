@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 
 @Controller("/")
-class WorkflowsController {
+class WorkflowsController(val client: DolphinSchedulerClient) {
 
     @GetMapping
     fun get(): String {
@@ -14,6 +14,8 @@ class WorkflowsController {
 
     @PostMapping("/workflows/start")
     fun startWorkflow(): String {
+        client.startBatch("128090641501184")
+
         return "fragments :: batchStartConfirmation"
     }
 
