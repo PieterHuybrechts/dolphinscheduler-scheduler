@@ -7,9 +7,10 @@ import org.springframework.http.HttpOutputMessage
 import org.springframework.http.MediaType
 import org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED
 import org.springframework.http.converter.HttpMessageConverter
+import org.springframework.stereotype.Component
 import java.net.URLEncoder
 
-//@Component
+@Component
 class DolphinRequestBodyHttpMessageConverterKotlin(val mapper: ObjectMapper) : HttpMessageConverter<DolphinRequestBody> {
 
     override fun canRead(clazz: Class<*>, mediaType: MediaType?): Boolean {
@@ -40,13 +41,13 @@ class DolphinRequestBodyHttpMessageConverterKotlin(val mapper: ObjectMapper) : H
         val out: StringBuilder = StringBuilder()
 
         @JsonAnySetter
-        fun write(name: String, property: Object) {
+        fun write(name: String, property: Object?) {
             if (out.isNotEmpty()) {
                 out.append('&')
             }
 
             out.append(URLEncoder.encode(name, Charsets.UTF_8)).append('=')
-            out.append(URLEncoder.encode(property.toString(), Charsets.UTF_8))
+            out.append(URLEncoder.encode(property?.toString() ?: "", Charsets.UTF_8))
         }
 
         override fun toString(): String {
