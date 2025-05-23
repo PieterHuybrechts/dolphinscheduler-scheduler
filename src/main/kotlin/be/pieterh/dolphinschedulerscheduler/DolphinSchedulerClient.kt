@@ -21,11 +21,12 @@ class DolphinSchedulerClient(
 ) {
     val projectUrl = "$baseUrl/projects/$projectCode"
 
-    fun startBatch(processDefinitionCode: String) {
+    fun startBatch(processDefinitionCode: String, version : Int) {
         val currentDayAtStartOfDay = LocalDate.now().atStartOfDay().toString()
 
         val body = dolphinStartWorkflowTOBuilder
             .withProcessDefinitionCode(processDefinitionCode)
+            .withVersion(version)
             .withScheduleTime(
                 DolphinScheduleTime.Builder()
                     .withComplementStartDate(currentDayAtStartOfDay)
@@ -58,7 +59,7 @@ class DolphinSchedulerClient(
             WorkFlowQueryTO::class.java
         )
 
-        return response.body!!.data!!.totalList.map { summaryTO -> WorkFlow(summaryTO.name!!, summaryTO.code!!) }
+        return response.body!!.data!!.totalList.map { summaryTO -> WorkFlow(summaryTO.name!!, summaryTO.code!!, summaryTO.version!!) }
     }
 
     fun dolphinHeadersForGet(): HttpHeaders {

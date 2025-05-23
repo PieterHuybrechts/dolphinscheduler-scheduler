@@ -16,4 +16,8 @@ class DolphinSchedulerWorkFlowRepository() {
         return workFlows
     }
 
+    fun find(workFlowId: String): WorkFlow? {
+        return workFlows.first { workFlow -> workFlow.code == workFlowId }
+    }
+
 }

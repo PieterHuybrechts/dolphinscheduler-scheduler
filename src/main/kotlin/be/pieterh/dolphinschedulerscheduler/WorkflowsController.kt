@@ -18,7 +18,8 @@ class WorkflowsController(val client: DolphinSchedulerClient, val repository: Do
 
     @PostMapping("/workflows/start/{workflowId}")
     fun startWorkflow(@PathVariable workflowId: String): String {
-        client.startBatch(workflowId)
+        val version = repository.find(workflowId)?.version
+        client.startBatch(workflowId, version ?: 0)
 
         return "fragments :: batchStartConfirmation"
     }
