@@ -1,6 +1,8 @@
-package be.pieterh.dolphinscheduler_scheduler
+package be.pieterh.dolphinschedulerscheduler.dolphinschedulerto
 
-class DolphinRequestBody private constructor(builder: Builder) {
+import be.pieterh.dolphinschedulerscheduler.DolphinScheduleTime
+
+class DolphinStartWorkflowTO private constructor(builder: Builder) {
     val processDefinitionCode: String
     val failureStrategy: String
     val warningType: String
@@ -176,8 +178,8 @@ class DolphinRequestBody private constructor(builder: Builder) {
             return this
         }
 
-        fun build(): DolphinRequestBody {
-            return DolphinRequestBody(this)
+        fun build(): DolphinStartWorkflowTO {
+            return DolphinStartWorkflowTO(this)
         }
     }
 }

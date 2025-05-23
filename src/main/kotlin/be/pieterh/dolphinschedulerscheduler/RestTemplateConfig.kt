@@ -1,5 +1,6 @@
-package be.pieterh.dolphinscheduler_scheduler
+package be.pieterh.dolphinschedulerscheduler
 
+import be.pieterh.dolphinschedulerscheduler.dolphinschedulerto.DolphinStartWorkflowTO
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.context.annotation.Bean
@@ -24,8 +25,8 @@ class RestTemplateConfig : WebMvcConfigurer {
     }
 
     @Bean
-    fun dolphinRequestBodyBuilder(): DolphinRequestBody.Builder {
-        return DolphinRequestBody.Builder()
+    fun dolphinRequestPostBodyBuilder(): DolphinStartWorkflowTO.Builder {
+        return DolphinStartWorkflowTO.Builder()
             .withFailureStrategy("CONTINUE")
             .withWarningType("NONE")
             .withExecType("START_PROCESS")

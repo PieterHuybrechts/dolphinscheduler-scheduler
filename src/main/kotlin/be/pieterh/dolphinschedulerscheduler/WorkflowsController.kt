@@ -1,4 +1,4 @@
-package be.pieterh.dolphinscheduler_scheduler
+package be.pieterh.dolphinschedulerscheduler
 
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -25,7 +25,7 @@ class WorkflowsController(val client: DolphinSchedulerClient, val repository: Do
 
     @GetMapping("workflows/refresh")
     fun refreshWorkflows(model: Model): String {
-//        client.refreshTasks()
+        client.refreshTasks()
         val allTasks = repository.findAll()
         model.addAttribute("tasks", allTasks)
 

@@ -1,4 +1,4 @@
-package be.pieterh.dolphinscheduler_scheduler
+package be.pieterh.dolphinschedulerscheduler
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

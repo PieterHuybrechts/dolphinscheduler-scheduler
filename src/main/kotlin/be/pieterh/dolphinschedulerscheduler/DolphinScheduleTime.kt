@@ -1,4 +1,4 @@
-package be.pieterh.dolphinscheduler_scheduler
+package be.pieterh.dolphinschedulerscheduler
 
 class DolphinScheduleTime(builder: Builder) {
     val complementStartDate: String = builder.complementStartDate!!

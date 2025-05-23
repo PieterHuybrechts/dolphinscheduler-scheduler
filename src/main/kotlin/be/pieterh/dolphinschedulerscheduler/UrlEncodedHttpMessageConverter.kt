@@ -1,4 +1,4 @@
-package be.pieterh.dolphinscheduler_scheduler
+package be.pieterh.dolphinschedulerscheduler
 
 import com.fasterxml.jackson.annotation.JsonAnySetter
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -12,7 +12,7 @@ import java.net.URLEncoder
 import kotlin.text.Charsets.UTF_8
 
 @Component
-class DolphinRequestBodyHttpMessageConverter(val mapper: ObjectMapper) : HttpMessageConverter<Object> {
+class UrlEncodedHttpMessageConverter(val mapper: ObjectMapper) : HttpMessageConverter<Object> {
 
     override fun canRead(clazz: Class<*>, mediaType: MediaType?): Boolean {
         return false

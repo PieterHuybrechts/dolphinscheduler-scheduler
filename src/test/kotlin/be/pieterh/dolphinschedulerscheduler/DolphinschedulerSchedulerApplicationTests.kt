@@ -1,4 +1,4 @@
-package be.pieterh.dolphinscheduler_scheduler
+package be.pieterh.dolphinschedulerscheduler
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
