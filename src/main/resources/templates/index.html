@@ -13,7 +13,7 @@
 <button hx-get="/workflows/refresh"
         hx-target="#task-list">refresh</button>
 
-<ul id="task-list" th:insert="~{fragments :: tasksList (${tasks})}" th:remove="tag"></ul>
+<ul id="task-list" th:insert="~{fragments :: tasksList (${tasks})}"></ul>
 
 <div id="confirmation-message"></div>
 
