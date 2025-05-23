@@ -17,13 +17,13 @@ class WorkflowsController(val client: DolphinSchedulerClient, val repository: Do
         return "index"
     }
 
-    @GetMapping("/workflows/search")
+    @GetMapping("/workflows")
     fun search(@RequestParam nameQuery: String, model: Model): String {
         model.addAttribute("tasks", repository.searchByName(nameQuery))
         return "fragments :: tasksList"
     }
 
-    @PostMapping("/workflows/start/{workflowId}")
+    @PostMapping("/workflows/{workflowId}/start")
     fun startWorkflow(@PathVariable workflowId: String): String {
         val version = repository.find(workflowId)?.version
         client.startBatch(workflowId, version ?: 0)

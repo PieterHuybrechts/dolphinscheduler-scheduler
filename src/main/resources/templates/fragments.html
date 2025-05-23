@@ -14,8 +14,9 @@
     th:remove="tag">
     <label th:text="${task.name}"
            class="task-name font-semibold text-lg"></label>
-    <button th:attr="hx-post=@{/workflows/start/{code}(code=${task.code})}"
-            hx-target="#confirmation-message" th:text="${task.releaseState}"
+    <button th:attr="hx-post='/workflows/' + ${task.code} + '/start'"
+            hx-target="#confirmation-message"
+            th:text="${task.releaseState}"
             th:disabled="${task.releaseState != 'ONLINE'}"
             th:class="${task.releaseState == 'ONLINE' ? 'bg-green-600 hover:bg-green-500' : 'bg-red-600'}"
             th:classappend="'text-white px-4 py-2 rounded-lg transition'">
