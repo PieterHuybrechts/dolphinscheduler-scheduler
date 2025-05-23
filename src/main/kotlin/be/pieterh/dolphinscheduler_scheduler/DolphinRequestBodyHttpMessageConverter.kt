@@ -42,12 +42,16 @@ class DolphinRequestBodyHttpMessageConverter(val mapper: ObjectMapper) : HttpMes
 
         @JsonAnySetter
         fun write(name: String, property: Object?) {
+            if (property == null){
+                return
+            }
+
             if (out.isNotEmpty()) {
                 out.append('&')
             }
 
             out.append(URLEncoder.encode(name, Charsets.UTF_8)).append('=')
-            out.append(URLEncoder.encode(property?.toString() ?: "", Charsets.UTF_8))
+            out.append(URLEncoder.encode(property.toString(), Charsets.UTF_8))
         }
 
         override fun toString(): String {
