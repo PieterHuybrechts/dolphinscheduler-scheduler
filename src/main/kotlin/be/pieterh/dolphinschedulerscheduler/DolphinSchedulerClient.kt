@@ -21,7 +21,7 @@ class DolphinSchedulerClient(
 ) {
     val projectUrl = "$baseUrl/projects/$projectCode"
 
-    fun startBatch(processDefinitionCode: String, version : Int) {
+    fun startBatch(processDefinitionCode: String, version: Int) {
         val currentDayAtStartOfDay = LocalDate.now().atStartOfDay().toString()
 
         val body = dolphinStartWorkflowTOBuilder

@@ -3,51 +3,27 @@ package be.pieterh.dolphinschedulerscheduler.dolphinschedulerto
 import be.pieterh.dolphinschedulerscheduler.DolphinScheduleTime
 
 class DolphinStartWorkflowTO private constructor(builder: Builder) {
-    val processDefinitionCode: String
-    val failureStrategy: String
-    val warningType: String
-    val warningGroupId: String?
-    val execType: String
-    val startNodeList: String?
-    val taskDependType: String
-    val complementDependentMode: String
-    val runMode: String
-    val processInstancePriority: String
-    val workerGroup: String
-    val tenantCode: String
-    val environmentCode: String?
-    val startParams: String?
-    val expectedParallelismNumber: Int
-    val dryRun: Int
-    val testFlag: Int
-    val version: Int
-    val allLevelDependent: Boolean
-    val executionOrder: String
-    val scheduleTime: DolphinScheduleTime
-
-    init {
-        this.processDefinitionCode = builder.processDefinitionCode!!
-        this.failureStrategy = builder.failureStrategy!!
-        this.warningType = builder.warningType!!
-        this.warningGroupId = builder.warningGroupId
-        this.execType = builder.execType!!
-        this.startNodeList = builder.startNodeList
-        this.taskDependType = builder.taskDependType!!
-        this.complementDependentMode = builder.complementDependentMode!!
-        this.runMode = builder.runMode!!
-        this.processInstancePriority = builder.processInstancePriority!!
-        this.workerGroup = builder.workerGroup!!
-        this.tenantCode = builder.tenantCode!!
-        this.environmentCode = builder.environmentCode
-        this.startParams = builder.startParams
-        this.expectedParallelismNumber = builder.expectedParallelismNumber!!
-        this.dryRun = builder.dryRun!!
-        this.testFlag = builder.testFlag!!
-        this.version = builder.version!!
-        this.allLevelDependent = builder.allLevelDependent!!
-        this.executionOrder = builder.executionOrder!!
-        this.scheduleTime = builder.scheduleTime!!
-    }
+    val processDefinitionCode: String = builder.processDefinitionCode!!
+    val failureStrategy: String = builder.failureStrategy!!
+    val warningType: String = builder.warningType!!
+    val warningGroupId: String? = builder.warningGroupId
+    val execType: String = builder.execType!!
+    val startNodeList: String? = builder.startNodeList
+    val taskDependType: String = builder.taskDependType!!
+    val complementDependentMode: String = builder.complementDependentMode!!
+    val runMode: String = builder.runMode!!
+    val processInstancePriority: String = builder.processInstancePriority!!
+    val workerGroup: String = builder.workerGroup!!
+    val tenantCode: String = builder.tenantCode!!
+    val environmentCode: String? = builder.environmentCode
+    val startParams: String? = builder.startParams
+    val expectedParallelismNumber: Int = builder.expectedParallelismNumber!!
+    val dryRun: Int = builder.dryRun!!
+    val testFlag: Int = builder.testFlag!!
+    val version: Int = builder.version!!
+    val allLevelDependent: Boolean = builder.allLevelDependent!!
+    val executionOrder: String = builder.executionOrder!!
+    val scheduleTime: DolphinScheduleTime = builder.scheduleTime!!
 
     class Builder {
         var processDefinitionCode: String? = null
@@ -71,7 +47,6 @@ class DolphinStartWorkflowTO private constructor(builder: Builder) {
         var allLevelDependent: Boolean? = null
         var executionOrder: String? = null
         var scheduleTime: DolphinScheduleTime? = null
-
 
         fun withProcessDefinitionCode(processDefinitionCode: String): Builder {
             this.processDefinitionCode = processDefinitionCode

@@ -8,7 +8,7 @@ class DolphinSchedulerWorkFlowRepository() {
 
     var workFlows = listOf<WorkFlow>()
 
-    fun save(workFlows : List<WorkFlow>) {
+    fun save(workFlows: List<WorkFlow>) {
         this.workFlows = workFlows
     }
 

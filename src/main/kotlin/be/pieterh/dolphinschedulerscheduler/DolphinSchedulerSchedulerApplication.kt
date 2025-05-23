@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class DolphinSchedulerSchedulerApplication
 
 fun main(args: Array<String>) {
-	runApplication<DolphinSchedulerSchedulerApplication>(*args)
+    runApplication<DolphinSchedulerSchedulerApplication>(*args)
 }
