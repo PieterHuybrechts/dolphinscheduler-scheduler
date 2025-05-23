@@ -9,6 +9,6 @@ class WorkflowSummaryListTO private constructor() {
 }
 
 class WorkflowSummaryTO private constructor() {
-    val taskName: String? = null
-    val processDefinitionCode: String? = null
+    val name: String? = null
+    val code: String? = null
 }

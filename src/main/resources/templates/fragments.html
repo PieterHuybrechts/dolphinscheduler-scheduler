@@ -12,7 +12,7 @@
 
 <li th:fragment="taskListItem (task)"
     th:remove="tag">
-    <label th:text="${task.taskName}"
+    <label th:text="${task.name}"
            class="task-name font-semibold text-lg"></label>
     <button hx-post="/workflows/start/128090641501184"
             hx-target="#confirmation-message"

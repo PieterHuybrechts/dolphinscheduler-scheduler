@@ -1,4 +1,4 @@
 package be.pieterh.dolphinschedulerscheduler.domain
 
-data class WorkFlow(val taskName: String, val processDefinitionCode: String) {
+data class WorkFlow(val name: String, val code: String) {
 }

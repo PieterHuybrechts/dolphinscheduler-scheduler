@@ -45,7 +45,7 @@ class DolphinSchedulerClient(
     }
 
     fun refreshTasks(): List<WorkFlow> {
-        val uri = UriComponentsBuilder.fromHttpUrl("$projectUrl/task-definition")
+        val uri = UriComponentsBuilder.fromHttpUrl("$projectUrl/process-definition")
             .queryParam("pageNo", 1)
             .queryParam("pageSize", 500)
             .build()
@@ -58,7 +58,7 @@ class DolphinSchedulerClient(
             WorkFlowQueryTO::class.java
         )
 
-        return response.body!!.data!!.totalList.map { summaryTO -> WorkFlow(summaryTO.taskName!!, summaryTO.processDefinitionCode!!) }
+        return response.body!!.data!!.totalList.map { summaryTO -> WorkFlow(summaryTO.name!!, summaryTO.code!!) }
     }
 
     fun dolphinHeadersForGet(): HttpHeaders {
