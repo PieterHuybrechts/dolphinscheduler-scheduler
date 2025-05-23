@@ -2,7 +2,7 @@ package be.pieterh.dolphinschedulerscheduler
 
 import be.pieterh.dolphinschedulerscheduler.dolphinschedulerto.DolphinStartWorkflowTO
 import be.pieterh.dolphinschedulerscheduler.dolphinschedulerto.WorkFlowQueryTO
-import be.pieterh.dolphinschedulerscheduler.dolphinschedulerto.WorkflowSummaryListTO
+import be.pieterh.dolphinschedulerscheduler.domain.WorkFlow
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.*
 import org.springframework.stereotype.Service
@@ -17,10 +17,9 @@ class DolphinSchedulerClient(
     val dolphinHeaders: HttpHeaders,
     @Value("\${dolphin-scheduler-scheduler.base-url}") baseUrl: String,
     @Value("\${dolphin-scheduler-scheduler.project-code}") projectCode: String,
-    @Value("\${dolphin-scheduler-scheduler.token}") token: String
+    @Value("\${dolphin-scheduler-scheduler.token}") val token: String
 ) {
     val projectUrl = "$baseUrl/projects/$projectCode"
-    val token = token
 
     fun startBatch(processDefinitionCode: String) {
         val currentDayAtStartOfDay = LocalDate.now().atStartOfDay().toString()
@@ -45,7 +44,7 @@ class DolphinSchedulerClient(
         println(response)
     }
 
-    fun refreshTasks() : WorkflowSummaryListTO {
+    fun refreshTasks(): List<WorkFlow> {
         val uri = UriComponentsBuilder.fromHttpUrl("$projectUrl/task-definition")
             .queryParam("pageNo", 1)
             .queryParam("pageSize", 500)
@@ -59,10 +58,10 @@ class DolphinSchedulerClient(
             WorkFlowQueryTO::class.java
         )
 
-        return response.body!!.data!!
+        return response.body!!.data!!.totalList.map { summaryTO -> WorkFlow(summaryTO.taskName!!, summaryTO.processDefinitionCode!!) }
     }
 
-    fun dolphinHeadersForGet() : HttpHeaders {
+    fun dolphinHeadersForGet(): HttpHeaders {
         val headers = HttpHeaders()
         headers.contentType = MediaType.APPLICATION_JSON
         headers.set("token", token)

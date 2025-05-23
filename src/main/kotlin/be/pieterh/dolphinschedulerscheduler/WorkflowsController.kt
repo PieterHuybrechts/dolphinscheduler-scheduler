@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 
 @Controller("/")
-class WorkflowsController(val client: DolphinSchedulerClient, val repository: DolphinSchedulerTaskRepository) {
+class WorkflowsController(val client: DolphinSchedulerClient, val repository: DolphinSchedulerWorkFlowRepository) {
 
     @GetMapping
     fun get(model: Model): String {
@@ -25,7 +25,8 @@ class WorkflowsController(val client: DolphinSchedulerClient, val repository: Do
 
     @GetMapping("workflows/refresh")
     fun refreshWorkflows(model: Model): String {
-        client.refreshTasks()
+        val workFlows = client.refreshTasks()
+        repository.save(workFlows)
         val allTasks = repository.findAll()
         model.addAttribute("tasks", allTasks)
 
