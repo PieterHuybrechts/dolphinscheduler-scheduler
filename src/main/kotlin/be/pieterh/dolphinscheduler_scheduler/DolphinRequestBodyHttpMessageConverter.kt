@@ -9,9 +9,10 @@ import org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED
 import org.springframework.http.converter.HttpMessageConverter
 import org.springframework.stereotype.Component
 import java.net.URLEncoder
+import kotlin.text.Charsets.UTF_8
 
 @Component
-class DolphinRequestBodyHttpMessageConverter(val mapper: ObjectMapper) : HttpMessageConverter<DolphinRequestBody> {
+class DolphinRequestBodyHttpMessageConverter(val mapper: ObjectMapper) : HttpMessageConverter<Object> {
 
     override fun canRead(clazz: Class<*>, mediaType: MediaType?): Boolean {
         return false
@@ -25,16 +26,13 @@ class DolphinRequestBodyHttpMessageConverter(val mapper: ObjectMapper) : HttpMes
         return listOf(APPLICATION_FORM_URLENCODED)
     }
 
-    override fun read(clazz: Class<out DolphinRequestBody?>, inputMessage: HttpInputMessage): DolphinRequestBody {
+    override fun read(clazz: Class<out Object?>, inputMessage: HttpInputMessage): Object {
         throw NotImplementedError()
     }
 
-    override fun write(t: DolphinRequestBody, contentType: MediaType?, outputMessage: HttpOutputMessage) {
-        println(t)
+    override fun write(t: Object, contentType: MediaType?, outputMessage: HttpOutputMessage) {
         val body = mapper.convertValue(t, UrlEncodedWriter::class.java).toString()
-        println(body)
-
-        outputMessage.body.write(body.toByteArray(Charsets.UTF_8))
+        outputMessage.body.write(body.toByteArray(UTF_8))
     }
 
     private class UrlEncodedWriter() {
@@ -42,7 +40,7 @@ class DolphinRequestBodyHttpMessageConverter(val mapper: ObjectMapper) : HttpMes
 
         @JsonAnySetter
         fun write(name: String, property: Object?) {
-            if (property == null){
+            if (property == null) {
                 return
             }
 
@@ -50,8 +48,8 @@ class DolphinRequestBodyHttpMessageConverter(val mapper: ObjectMapper) : HttpMes
                 out.append('&')
             }
 
-            out.append(URLEncoder.encode(name, Charsets.UTF_8)).append('=')
-            out.append(URLEncoder.encode(property.toString(), Charsets.UTF_8))
+            out.append(URLEncoder.encode(name, UTF_8)).append('=')
+            out.append(URLEncoder.encode(property.toString(), UTF_8))
         }
 
         override fun toString(): String {
