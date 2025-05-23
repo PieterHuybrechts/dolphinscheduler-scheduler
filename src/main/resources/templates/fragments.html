@@ -6,14 +6,17 @@
 
 <ul th:fragment="tasksList (tasks)"
     th:remove="tag">
-    <li th:each="task : ${tasks}" th:insert="~{fragments :: taskListItem (task) }"></li>
+    <li th:each="task : ${tasks}" th:insert="~{fragments :: taskListItem (task) }"
+        class="bg-gray-700 p-4 rounded-xl flex items-center justify-between"></li>
 </ul>
 
 <li th:fragment="taskListItem (task)"
     th:remove="tag">
-    <label th:text="${task.value}"></label>
+    <label th:text="${task.value}"
+    class="bold"></label>
     <button hx-post="/workflows/start/128090641501184"
-            hx-target="#confirmation-message">Start
+            hx-target="#confirmation-message"
+            class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg transition">Start
     </button>
 </li>
 
