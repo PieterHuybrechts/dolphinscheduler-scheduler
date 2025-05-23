@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
       lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,11 +9,15 @@
 </head>
 <body>
 <h1>Dolphinscheduler-scheduler</h1>
-<button type="submit"
-        hx-post="/workflows/start"
-        hx-target="#confirmation-message">
-    Start!!!!!
-</button>
+
+<ul>
+    <li th:each="task : ${tasks}">
+        <label th:text="${task.value}"></label>
+        <button hx-post="/workflows/start/128090641501184"
+                hx-target="#confirmation-message">Start
+        </button>
+    </li>
+</ul>
 
 <div id="confirmation-message"></div>
 
