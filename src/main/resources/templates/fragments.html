@@ -4,4 +4,15 @@
 
 <div th:fragment="batchStartConfirmation" th:remove="tag">Batch has maybe started! We don't check the status before returning this message ¯\_(ツ)_/¯</div>
 
+<ul th:fragment="tasksList (tasks)">
+    <li th:each="task : ${tasks}" th:insert="~{fragments :: taskListItem (task) }" th:remove="tag"></li>
+</ul>
+
+<li th:fragment="taskListItem (task)">
+    <label th:text="${task.value}"></label>
+    <button hx-post="/workflows/start/128090641501184"
+            hx-target="#confirmation-message">Start
+    </button>
+</li>
+
 </html>

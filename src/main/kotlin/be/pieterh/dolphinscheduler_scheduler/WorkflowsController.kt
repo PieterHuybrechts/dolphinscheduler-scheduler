@@ -24,4 +24,13 @@ class WorkflowsController(val client: DolphinSchedulerClient, val repository: Do
         return "fragments :: batchStartConfirmation"
     }
 
+    @GetMapping("workflows/refresh")
+    fun refreshWorkflows(model: Model): String {
+//        client.refreshTasks()
+        val allTasks = repository.findAll()
+        model.addAttribute("tasks", allTasks)
+
+        return "fragments :: tasksList"
+    }
+
 }

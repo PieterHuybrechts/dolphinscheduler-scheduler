@@ -17,7 +17,7 @@ class DolphinSchedulerClient(
     @Value("\${dolphin-scheduler-scheduler.base-url}") baseUrl: String,
     @Value("\${dolphin-scheduler-scheduler.project-code}") projectCode: String
 ) {
-    val baseUrl = "$baseUrl/projects/$projectCode/executors/start-process-instance"
+    val projectUrl = "$baseUrl/projects/$projectCode"
 
     fun startBatch(processDefinitionCode: String) {
         val currentDayAtStartOfDay = LocalDate.now().atStartOfDay().toString()
@@ -33,7 +33,7 @@ class DolphinSchedulerClient(
             .build()
 
         val response: ResponseEntity<String> = restTemplate.exchange(
-            baseUrl,
+            "$projectUrl/executors/start-process-instance",
             HttpMethod.POST,
             HttpEntity(body, dolphinHeaders),
             String::class.java
@@ -42,4 +42,7 @@ class DolphinSchedulerClient(
         println(response)
     }
 
+    fun refreshTasks(){
+
+    }
 }

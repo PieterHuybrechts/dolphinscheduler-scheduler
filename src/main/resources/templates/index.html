@@ -8,16 +8,12 @@
     <script type="text/javascript" src="https://unpkg.com/htmx.org@2.0.4"></script>
 </head>
 <body>
-<h1>Dolphinscheduler-scheduler</h1>
+<h1>DolphinScheduler-scheduler</h1>
 
-<ul>
-    <li th:each="task : ${tasks}">
-        <label th:text="${task.value}"></label>
-        <button hx-post="/workflows/start/128090641501184"
-                hx-target="#confirmation-message">Start
-        </button>
-    </li>
-</ul>
+<button hx-get="/workflows/refresh"
+        hx-target="#task-list">refresh</button>
+
+<ul id="task-list" th:insert="~{fragments :: tasksList (${tasks})}" th:remove="tag"></ul>
 
 <div id="confirmation-message"></div>
 
