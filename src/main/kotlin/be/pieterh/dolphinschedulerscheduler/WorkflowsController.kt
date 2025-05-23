@@ -5,6 +5,7 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestParam
 
 @Controller("/")
 class WorkflowsController(val client: DolphinSchedulerClient, val repository: DolphinSchedulerWorkFlowRepository) {
@@ -14,6 +15,12 @@ class WorkflowsController(val client: DolphinSchedulerClient, val repository: Do
         model.addAttribute("tasks", repository.findAll())
 
         return "index"
+    }
+
+    @GetMapping("/workflows/search")
+    fun search(@RequestParam nameQuery: String, model: Model): String {
+        model.addAttribute("tasks", repository.searchByName(nameQuery))
+        return "fragments :: tasksList"
     }
 
     @PostMapping("/workflows/start/{workflowId}")

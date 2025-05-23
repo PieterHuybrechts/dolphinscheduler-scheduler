@@ -20,4 +20,7 @@ class DolphinSchedulerWorkFlowRepository() {
         return workFlows.first { workFlow -> workFlow.code == workFlowId }
     }
 
+    fun searchByName(nameQuery: String): List<WorkFlow> {
+        return workFlows.filter { workFlow -> workFlow.name.contains(nameQuery) }
+    }
 }
