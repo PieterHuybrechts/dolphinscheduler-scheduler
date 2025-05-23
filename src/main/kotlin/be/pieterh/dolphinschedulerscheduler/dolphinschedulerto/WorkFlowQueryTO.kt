@@ -12,4 +12,5 @@ class WorkflowSummaryTO private constructor() {
     val name: String? = null
     val code: String? = null
     val version: Int? = null
+    val releaseState : String? = null
 }

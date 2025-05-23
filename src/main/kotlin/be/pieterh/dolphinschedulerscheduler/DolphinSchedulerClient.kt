@@ -59,7 +59,7 @@ class DolphinSchedulerClient(
             WorkFlowQueryTO::class.java
         )
 
-        return response.body!!.data!!.totalList.map { summaryTO -> WorkFlow(summaryTO.name!!, summaryTO.code!!, summaryTO.version!!) }
+        return response.body!!.data!!.totalList.map { summaryTO -> WorkFlow(summaryTO.name!!, summaryTO.code!!, summaryTO.version!!, summaryTO.releaseState!!) }
     }
 
     fun dolphinHeadersForGet(): HttpHeaders {
